@@ -118,3 +118,8 @@ class CommentTest(TestCase):
         self.comment.save_comment()
         comment = Comment.objects.all()
         self.assertTrue(len(comment) > 0)
+
+    def test_get_comments(self):
+        self.comment.save_comment()
+        comm = Comment.get_comments()
+        self.assertTrue(len(comm) > 0)
