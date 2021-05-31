@@ -33,3 +33,23 @@ class ProjectTest(TestCase):
         self.tribune.save_project()
         project = Project.get_project_by_id(self.tribune.id)
         self.assertTrue(project, self.tribune)
+
+
+class ProfileTest(TestCase):
+    def tearDown(self):
+        Project.objects.all().delete()
+        Profile.objects.all().delete()
+        Ratings.objects.all().delete()
+        Comment.objects.all().delete()
+
+    def setUp(self):
+        self.user = User.objects.create_user('john', email=None, password='secretpassword')
+        self.prof = Profile(user=self.user, bio='This is a test example of my bio', email='john@test.com')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.prof, Profile))
+
+    def test_save_method(self):
+        self.prof.save_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile) > 0)
