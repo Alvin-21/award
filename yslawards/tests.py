@@ -59,3 +59,24 @@ class ProfileTest(TestCase):
         self.prof.delete_profile()
         profile = Profile.objects.all()
         self.assertTrue(len(profile) == 0)
+
+
+class RatingsTest(TestCase):
+    def tearDown(self):
+        Project.objects.all().delete()
+        Profile.objects.all().delete()
+        Ratings.objects.all().delete()
+        Comment.objects.all().delete()
+
+    def setUp(self):
+        self.user = User.objects.create_user('john', email=None, password='secretpassword')
+        self.tribune = Project(user=self.user, title='Moringa Tribune', description='This is a test example', link='https://alvo-tribune.herokuapp.com/')
+        self.rate = Ratings(critic=self.user, project=self.tribune, design=5, usability=9, content=7)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.rate, Ratings))
+
+    def test_save_method(self):
+        self.rate.save_rating()
+        rating = Ratings.objects.all()
+        self.assertTrue(len(rating) > 0)
