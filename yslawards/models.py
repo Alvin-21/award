@@ -39,3 +39,10 @@ class Ratings(models.Model):
     design = models.IntegerField(choices=RATING_VALUES, default=0)
     usability = models.IntegerField(choices=RATING_VALUES, default=0)
     content = models.IntegerField(choices=RATING_VALUES, default=0)
+
+
+class Comment(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    pub_date = models.DateTimeField(auto_now_add=True)
