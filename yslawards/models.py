@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
+
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
@@ -17,3 +18,24 @@ class Profile(models.Model):
     image = CloudinaryField('image', null=True)
     bio = models.CharField(max_length=200)
     email = models.EmailField()
+
+
+class Ratings(models.Model):
+    RATING_VALUES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+
+    critic = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    design = models.IntegerField(choices=RATING_VALUES, default=0)
+    usability = models.IntegerField(choices=RATING_VALUES, default=0)
+    content = models.IntegerField(choices=RATING_VALUES, default=0)
