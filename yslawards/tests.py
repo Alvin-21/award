@@ -96,3 +96,25 @@ class RatingsTest(TestCase):
         self.rate.save_rating()
         avg = Ratings.average_content()
         self.assertEqual(avg, 7.0)
+
+
+class CommentTest(TestCase):
+    def tearDown(self):
+        Project.objects.all().delete()
+        Profile.objects.all().delete()
+        Ratings.objects.all().delete()
+        Comment.objects.all().delete()
+
+    def setUp(self):
+        self.user = User.objects.create_user('john', email=None, password='secretpassword')
+        self.tribune = Project(user=self.user, title='Moringa Tribune', description='This is a test example', link='https://alvo-tribune.herokuapp.com/')
+        self.tribune.save_project()
+        self.comment = Comment(project=self.tribune, user=self.user, text='This is a test comment')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.comment, Comment))
+
+    def test_save_method(self):
+        self.comment.save_comment()
+        comment = Comment.objects.all()
+        self.assertTrue(len(comment) > 0)
