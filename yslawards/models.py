@@ -10,7 +10,7 @@ class Project(models.Model):
     title = models.CharField(max_length=50)
     image = CloudinaryField('image', null=True)
     description = models.CharField(max_length=1500)
-    link = models.CharField(max_length=100)
+    link = models.URLField(max_length=100)
 
     def __str__(self):
         return self.title
@@ -32,6 +32,15 @@ class Profile(models.Model):
     image = CloudinaryField('image', null=True)
     bio = models.CharField(max_length=200)
     email = models.EmailField()
+
+    def __str__(self):
+        return self.user.username
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()    
 
 
 class Ratings(models.Model):
