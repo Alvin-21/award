@@ -80,7 +80,7 @@ class Ratings(models.Model):
     @classmethod
     def average_content(cls):
         avg = cls.objects.aggregate(avg_content=Avg('content'))
-        return avg
+        return avg['avg_content']
 
 
 class Comment(models.Model):
