@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models import Avg
 
 # Create your models here.
 
@@ -62,6 +63,24 @@ class Ratings(models.Model):
     design = models.IntegerField(choices=RATING_VALUES, default=0)
     usability = models.IntegerField(choices=RATING_VALUES, default=0)
     content = models.IntegerField(choices=RATING_VALUES, default=0)
+
+    def save_rating(self):
+        self.save()
+
+    @classmethod
+    def average_design(cls):
+        avg = cls.objects.aggregate(avg_design=Avg('design'))
+        return avg
+
+    @classmethod
+    def average_usability(cls):
+        avg = cls.objects.aggregate(avg_usability=Avg('usability'))
+        return avg
+
+    @classmethod
+    def average_content(cls):
+        avg = cls.objects.aggregate(avg_content=Avg('content'))
+        return avg
 
 
 class Comment(models.Model):
