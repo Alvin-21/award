@@ -10,3 +10,10 @@ class Project(models.Model):
     image = CloudinaryField('image', null=True)
     description = models.CharField(max_length=1500)
     link = models.CharField(max_length=100)
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = CloudinaryField('image', null=True)
+    bio = models.CharField(max_length=200)
+    email = models.EmailField()
