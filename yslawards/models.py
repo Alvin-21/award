@@ -70,7 +70,7 @@ class Ratings(models.Model):
     @classmethod
     def average_design(cls):
         avg = cls.objects.aggregate(avg_design=Avg('design'))
-        return avg
+        return avg['avg_design']
 
     @classmethod
     def average_usability(cls):

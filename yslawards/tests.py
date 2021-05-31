@@ -71,6 +71,7 @@ class RatingsTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user('john', email=None, password='secretpassword')
         self.tribune = Project(user=self.user, title='Moringa Tribune', description='This is a test example', link='https://alvo-tribune.herokuapp.com/')
+        self.tribune.save_project()
         self.rate = Ratings(critic=self.user, project=self.tribune, design=5, usability=9, content=7)
 
     def test_instance(self):
@@ -80,3 +81,8 @@ class RatingsTest(TestCase):
         self.rate.save_rating()
         rating = Ratings.objects.all()
         self.assertTrue(len(rating) > 0)
+
+    def test_average_design(self):
+        self.rate.save_rating()
+        avg = Ratings.average_design()
+        self.assertEqual(avg, 5.0)
