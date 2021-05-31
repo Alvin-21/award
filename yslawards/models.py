@@ -69,3 +69,11 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
+
+    def save_comment(self):
+        self.save()
+
+    @classmethod
+    def get_comments(cls):
+        comments = cls.objects.all()
+        return comments
