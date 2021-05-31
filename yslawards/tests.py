@@ -86,3 +86,8 @@ class RatingsTest(TestCase):
         self.rate.save_rating()
         avg = Ratings.average_design()
         self.assertEqual(avg, 5.0)
+
+    def test_average_usability(self):
+        self.rate.save_rating()
+        avg = Ratings.average_usability()
+        self.assertEqual(avg, 9.0)
