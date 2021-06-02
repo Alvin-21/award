@@ -63,6 +63,8 @@ class Ratings(models.Model):
     design = models.IntegerField(choices=RATING_VALUES, default=0)
     usability = models.IntegerField(choices=RATING_VALUES, default=0)
     content = models.IntegerField(choices=RATING_VALUES, default=0)
+    text = models.TextField(null=True)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
     def save_rating(self):
         self.save()
@@ -81,18 +83,3 @@ class Ratings(models.Model):
     def average_content(cls):
         avg = cls.objects.aggregate(avg_content=Avg('content'))
         return avg['avg_content']
-
-
-class Comment(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
-
-    def save_comment(self):
-        self.save()
-
-    @classmethod
-    def get_comments(cls):
-        comments = cls.objects.all()
-        return comments

@@ -5,13 +5,7 @@ from .models import *
 class RatingsForm(forms.ModelForm):
     class Meta:
         model = Ratings
-        exclude = ['critic', 'project']
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
+        exclude = ['critic', 'project', 'pub_date']
 
 
 class ProjectForm(forms.ModelForm):
