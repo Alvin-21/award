@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'yslawards',
     'cloudinary',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
