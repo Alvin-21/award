@@ -25,7 +25,7 @@ def rate(request, project_id):
             rating.critic = user
             rating.project = project
             rating.save()
-        return redirect('home')
+        return redirect('homepage')
 
 
 def new_project(request):
@@ -37,7 +37,7 @@ def new_project(request):
             project = form.save(commit=False)
             project.user = current_user
             project.save()
-        return redirect('home')  
+        return redirect('homepage')  
     else:
         form = ProjectForm()
 
@@ -58,7 +58,7 @@ def edit_profile(request):
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
-        return redirect('home')
+        return redirect('homepage')
     else:
         form = ProfileForm()
 
