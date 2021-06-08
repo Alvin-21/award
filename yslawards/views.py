@@ -45,7 +45,7 @@ def new_project(request):
     else:
         form = ProjectForm()
 
-    return render(request, 'project.html', {'form': form})
+    return render(request, 'new_project.html', {'form': form})
 
 
 def profile(request,profile_id):
