@@ -19,7 +19,13 @@
 
 ## Demo
 
-Here is a working live demo : 
+Here is a working live demo : https://yslawards.herokuapp.com
+
+## API Endpoints
+
+The API Endpoints are:
+- https://yslawards.herokuapp.com/api/projects
+- https://yslawards.herokuapp.com/api/profiles
 
 ### Landing Page
 
