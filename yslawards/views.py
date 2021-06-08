@@ -48,9 +48,11 @@ def new_project(request):
     return render(request, 'new_project.html', {'form': form})
 
 
-def profile(request,profile_id):
+def profile(request, profile_id):
+    current_user = request.user
     profile = Profile.objects.get(id=profile_id)
-    return render(request, 'profile.html', {"profile": profile})
+    projects = Project.objects.filter(user=current_user)
+    return render(request, 'profile.html', {"profile": profile, "projects": projects})
 
 
 def edit_profile(request):
