@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ def index(request):
 
     return render(request, 'index.html', {"projects": projects, "ratings": ratings, "avg_design": avg_design, "avg_usability": avg_usability, "avg_content": avg_content, "form": form})
 
-
+@login_required(login_url='/accounts/login/')
 def rate(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     user = request.user
@@ -31,7 +32,7 @@ def rate(request, project_id):
             rating.save()
         return HttpResponseRedirect(reverse('homepage'))
 
-
+@login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
 
@@ -47,14 +48,14 @@ def new_project(request):
 
     return render(request, 'new_project.html', {'form': form})
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request, profile_id):
     current_user = request.user
     profile = Profile.objects.get(id=profile_id)
     projects = Project.objects.filter(user=current_user)
     return render(request, 'profile.html', {"profile": profile, "projects": projects})
 
-
+@login_required(login_url='/accounts/login/')
 def edit_profile(request):
     current_user = request.user
 
