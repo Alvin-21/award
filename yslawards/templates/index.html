@@ -21,12 +21,12 @@
             <h5 class="card-title">Comments</h5>
             {% for rating in ratings %}
             {% if project.id == rating.project.id %}
-            <p class="card-text">{{rating.text}} posted on {{rating.pub_date}}</p>
+            <p class="card-text"><strong>{{rating.critic}} </strong>{{rating.text}} <small>posted on {{rating.pub_date}}</small></p>
             {% endif %}
             {% endfor %}
         </div>
         <div class="card-footer">
-            <form action="" enctype="multipart/form-data" method="post" role="form">
+            <form action="{%url 'rate' project.id%}" enctype="multipart/form-data" method="post" role="form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 <div class="form-group">

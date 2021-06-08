@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import *
 from .forms import *
+from django.urls import reverse
 
 # Create your views here.
 
@@ -28,7 +29,7 @@ def rate(request, project_id):
             rating.critic = user
             rating.project = project
             rating.save()
-        return redirect('homepage')
+        return HttpResponseRedirect(reverse('homepage'))
 
 
 def new_project(request):
