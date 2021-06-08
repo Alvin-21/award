@@ -47,3 +47,19 @@ def new_project(request):
 def profile(request,profile_id):
     profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', {"profile": profile})
+
+
+def edit_profile(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('home')
+    else:
+        form = ProfileForm()
+
+    return render(request, 'edit_profile.html', {"form": form})
