@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'yslawards',
     'cloudinary',
     'bootstrap4',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
