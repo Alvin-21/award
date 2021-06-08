@@ -19,7 +19,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-danger" href="{% url 'new_project' %}">Add Project</a>
                     <a class="dropdown-item text-danger" href="{% url 'profile' user.id%}">View Profile</a>
-                    <a class="dropdown-item text-danger" href="#">Change Password</a>
+                    <a class="dropdown-item text-danger" href="{% url 'edit_profile' %}">Edit Profile</a>
+                    <a class="dropdown-item text-danger" href="{% url 'password_change' %}">Change Password</a>
                     <a class="dropdown-item text-danger" href="/logout">Logout</a>
                 </div>
             </li>
