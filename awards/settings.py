@@ -180,4 +180,6 @@ cloudinary.config(
     api_secret=config('API_SECRET')
 )
 
+LOGIN_REDIRECT_URL = '/'
+
 django_heroku.settings(locals())
