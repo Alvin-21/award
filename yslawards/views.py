@@ -4,6 +4,9 @@ from .models import *
 from .forms import *
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ProjectSerializer
 
 # Create your views here.
 
@@ -70,3 +73,10 @@ def edit_profile(request):
         form = ProfileForm()
 
     return render(request, 'edit_profile.html', {"form": form})
+
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)
