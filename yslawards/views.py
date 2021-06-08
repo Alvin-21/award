@@ -9,9 +9,12 @@ from .forms import *
 def index(request):
     projects = Project.objects.all()
     ratings = Ratings.objects.all()
+    avg_design = Ratings.average_design()
+    avg_usability = Ratings.average_usability
+    avg_content = Ratings.average_content
     form = RatingsForm()
 
-    return render(request, 'index.html', {"projects": projects, "ratings": ratings,"form": form})
+    return render(request, 'index.html', {"projects": projects, "ratings": ratings, "avg_design": avg_design, "avg_usability": avg_usability, "avg_content": avg_content, "form": form})
 
 
 def rate(request, project_id):
