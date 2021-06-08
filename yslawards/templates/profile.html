@@ -9,8 +9,8 @@
     <h2>Email: {{profile.email}}</h2>
     <h2>Bio: {{profile.bio}}</h2>
     <a href="{% url 'edit_profile' %}" class="btn btn-outline-success btn-lg" style="margin-bottom: 10px;">Edit Profile</a>
-    {% for project in projects %}
     <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for project in projects %}
         <div class="col">
             <div class="card">
                 <div class="card-header bg-transparent border-success">{{project.title}}</div>
@@ -22,8 +22,8 @@
                 </div>
             </div>
         </div>
+        {%endfor%}
     </div>
-    {%endfor%}
 </div>
 
 {%endblock%}
