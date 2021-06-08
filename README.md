@@ -1,3 +1,5 @@
+<img src="static/img/awards.png">
+
 # YSL Awards
 
 <table>
